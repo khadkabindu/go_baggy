@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_baggy/widgets/top_categories.dart';
+import 'package:go_baggy/widgets/trending_products.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -67,6 +69,8 @@ class MyHomePage extends StatelessWidget {
                                 onPressed: () {},
                                 icon: const Icon(Icons.shopping_bag_outlined),
                               ),
+                              SizedBox(width: 20,),
+                              IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_cart_outlined),),
                             ],
                           ),
                         ],
@@ -158,9 +162,9 @@ class MyHomePage extends StatelessWidget {
               height: 600,
               color: Colors.white,
               child: Column(
-                children: [
+                children: const [
                   SizedBox(
-                    height: 30,
+                    height: 35,
                   ),
                   Text(
                     "Top Categories",
@@ -169,78 +173,20 @@ class MyHomePage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 450,
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "images/yellow.jpg",
-                              height: 350,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "New Arrivals",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text("Shop Now >>")
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        height: 450,
-                        child: Column(
-                          children: [
-                            Image.asset("images/blackbag.jpeg", height: 350,),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Everyday Bags",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text("Shop Now >>")
-
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        height: 450,
-                        child: Column(
-                          children: [
-                            Image.asset("images/pinkbag.jpeg", height: 350,),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "In Trends",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text("Shop Now >>")
-                          ],
-                        ),
-                      )
-                    ],
+                  TopCategories(),
+                ],
+              ),
+            ),
+            Container(
+              height: 700,
+              color: Colors.white,
+              child:  Column(
+                children: const[
+                  Text("What's Trending Now",style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(height: 50,),
+                  TrendingProduct(),
+
                 ],
               ),
             ),

@@ -45,23 +45,37 @@ class _TrendingProductState extends State<TrendingProduct> {
                         ),
                       ),
                     ),
-                    Text(Product.products[index].name),
-                    Text("\$ ${Product.products[index].price}.00"),
-                    GestureDetector(
-                      onTap: () {
-                        cartController.addProduct(Product.products[index]);
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 200,
-                        alignment: Alignment.center,
-                        color: Colors.black,
-                        child: const Text(
-                          "Add To Cart",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 8,
                     ),
+                    Text(
+                      Product.products[index].name,
+                      style: const TextStyle(
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "\$ ${Product.products[index].price}.00",
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     cartController.addProduct(Product.products[index]);
+                    //   },
+                    //   child: Container(
+                    //     height: 40,
+                    //     width: 200,
+                    //     alignment: Alignment.center,
+                    //     color: Colors.black,
+                    //     child: const Text(
+                    //       "Add To Cart",
+                    //       style: TextStyle(color: Colors.white),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(

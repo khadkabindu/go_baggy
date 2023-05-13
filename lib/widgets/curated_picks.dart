@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_baggy/widgets/color_palette.dart';
 import 'package:go_baggy/widgets/product_details.dart';
 
 import '../models/product_model.dart';
@@ -11,20 +12,40 @@ class CuratedPicks extends StatefulWidget {
 }
 
 class _CuratedPicksState extends State<CuratedPicks> {
-  List <String> imagePath = [""];
-  List<String> price = [];
-  List<String> name = [];
+  List<String> imagePath = [
+    "images/belted.png",
+    "images/neutral.png",
+    "images/dolcegabbana.png",
+    "images/purple.png",
+    "images/lv.png",
+    // "images/michaelkors.png",
+    // "images/sicily.png",
+    // "images/whiteyyy.png",
+    // "images/designer.png",
+    // "images/prada.png",
+    // "images/dooneybourke.png",
+  ];
+  List<String> price = ["49", "39", "89", "66", "79"];
+  List<String> name = [
+    "Belted Bag",
+    "Designer Peach",
+    "Dolce Gabbana",
+    "Dooney Bourks",
+    "Loui Vuitton"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
           shrinkWrap: true,
-          itemCount: Product.products.length,
+          itemCount: imagePath.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) {
             return Row(
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -38,26 +59,25 @@ class _CuratedPicksState extends State<CuratedPicks> {
                         width: 200,
                         color: const Color(0xfff1f1f1),
                         child: Image.asset(
-                          Product.products[index].imageUrl,
+                          imagePath[index],
                           height: 100,
                         ),
                       ),
                     ),
-                    Text(Product.products[index].name),
-                    Text("\$ ${Product.products[index].price}.00"),
-                    GestureDetector(
-                      onTap: () {
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 200,
-                        alignment: Alignment.center,
-                        color: Colors.black,
-                        child: const Text(
-                          "Add To Cart",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      name[index],
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "\$ ${price[index]}.00",
+                      style:
+                          const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

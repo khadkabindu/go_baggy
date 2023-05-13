@@ -16,7 +16,6 @@ class _ColorPaletteState extends State<ColorPalette> {
     0xffb65f7f,
     0xff1d1d1d,
     0xfffafafa,
-
   ];
 
 

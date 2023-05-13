@@ -226,17 +226,19 @@ class MyHomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
-                Column(
-                  children: [
-                    Container(
-                      child: const Text(
+                SizedBox(height: 60,),
+                Container(
+                  height: 700,
+                  child: Column(
+                    children: const[
+                       Text(
                         "Curated Picks",
                         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    SizedBox(height: 30,),
-                  ],
+                       SizedBox(height: 35,),
+                      CuratedPicks(),
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -11,6 +11,9 @@ class CuratedPicks extends StatefulWidget {
 }
 
 class _CuratedPicksState extends State<CuratedPicks> {
+  List <String> imagePath = [""];
+  List<String> price = [];
+  List<String> name = [];
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -21,10 +24,49 @@ class _CuratedPicksState extends State<CuratedPicks> {
           itemBuilder: (BuildContext context, int index) {
             return Row(
               children: [
-
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProductDetails()));
+                      },
+                      child: Container(
+                        height: 200,
+                        width: 200,
+                        color: const Color(0xfff1f1f1),
+                        child: Image.asset(
+                          Product.products[index].imageUrl,
+                          height: 100,
+                        ),
+                      ),
+                    ),
+                    Text(Product.products[index].name),
+                    Text("\$ ${Product.products[index].price}.00"),
+                    GestureDetector(
+                      onTap: () {
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 200,
+                        alignment: Alignment.center,
+                        color: Colors.black,
+                        child: const Text(
+                          "Add To Cart",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 35,
+                ),
               ],
             );
-          },),
+          }),
     );
   }
 }

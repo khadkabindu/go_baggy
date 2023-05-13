@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:go_baggy/widgets/curated_picks.dart';
+import 'package:go_baggy/widgets/top_brands.dart';
 import 'package:go_baggy/widgets/top_categories.dart';
 import 'package:go_baggy/widgets/trending_products.dart';
 
@@ -67,10 +68,15 @@ class MyHomePage extends StatelessWidget {
                               ),
                               IconButton(
                                 onPressed: () {},
-                                icon: const Icon(Icons.shopping_bag_outlined),
+                                icon: const Icon(Icons.favorite_outline),
                               ),
-                              SizedBox(width: 20,),
-                              IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_cart_outlined),),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.shopping_cart_outlined),
+                              ),
                             ],
                           ),
                         ],
@@ -178,17 +184,61 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Container(
-              height: 700,
+              height: 450,
               color: Colors.white,
-              child:  Column(
-                children: const[
-                  Text("What's Trending Now",style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+              child: Column(
+                children: const [
+                  Text(
+                    "What's Trending Now",
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 50,),
+                  SizedBox(
+                    height: 50,
+                  ),
                   TrendingProduct(),
-
                 ],
               ),
+            ),
+            Column(
+              children: [
+                Container(
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  child: const Text(
+                    "Brands",
+                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  height: 30,
+                ),
+                Container(
+                  height: 190,
+                  color: const Color(0xfff9f3eb),
+                  child: Column(
+                    children: const [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TopBrands(),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Column(
+                  children: [
+                    Container(
+                      child: const Text(
+                        "Curated Picks",
+                        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 30,),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

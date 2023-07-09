@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_baggy/widgets/curated_picks.dart';
+import 'package:go_baggy/widgets/footer.dart';
+import 'package:go_baggy/widgets/reviews.dart';
 import 'package:go_baggy/widgets/top_brands.dart';
 import 'package:go_baggy/widgets/top_categories.dart';
 import 'package:go_baggy/widgets/trending_products.dart';
+import 'package:input_history_text_field/input_history_text_field.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -56,22 +59,121 @@ class MyHomePage extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              SizedBox(
-                                width: 80,
+                              Row(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.search),
+                                  ),
+                                  SizedBox(
+                                    width: 100,
+                                    child: InputHistoryTextField(
+                                      historyKey: "02",
+                                      minLines: 2,
+                                      maxLines: 10,
+                                      limit: 8,
+                                      enableHistory: true,
+                                      hasFocusExpand: true,
+                                      showHistoryIcon: true,
+                                      showDeleteIcon: true,
+                                      historyIcon: Icons.add,
+                                      deleteIcon: Icons.delete,
+                                      enableOpacityGradient: false,
+                                      decoration: const InputDecoration(hintText: 'Search'),
+                                      listRowDecoration: const BoxDecoration(
+                                        border: Border(
+                                          left: BorderSide(color: Colors.red, width: 3),
+                                        ),
+                                      ),
+                                      listDecoration: BoxDecoration(
+                                        color: Colors.white60,
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(4),
+                                            bottomRight: Radius.circular(4)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.grey.withOpacity(0.2),
+                                              spreadRadius: 2,
+                                              blurRadius: 2,
+                                              offset: Offset(0, 3)),
+                                        ],
+                                      ),
+                                      historyIconTheme: const IconTheme(
+                                        data: IconThemeData(color: Colors.red, size: 12),
+                                        child: Icon(Icons.add),
+                                      ),
+                                      deleteIconTheme: const IconTheme(
+                                        data: IconThemeData(color: Colors.blue, size: 12),
+                                        child: Icon(Icons.remove_circle),
+                                      ),
+                                      listOffset: const Offset(0, 5),
+                                      listTextStyle: const TextStyle(fontSize: 30),
+                                      historyListItemLayoutBuilder: (controller, value, index) {
+                                        return InkWell(
+                                          onTap: () => controller.select(value.text),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 1,
+                                                child: Container(
+                                                    margin: const EdgeInsets.only(left: 10.0),
+                                                    padding: const EdgeInsets.only(left: 10.0),
+                                                    decoration: BoxDecoration(
+                                                      border: Border(
+                                                        left: BorderSide(
+                                                          width: 5.0,
+                                                          color: index % 2 == 0
+                                                              ? Colors.red
+                                                              : Colors.blue,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          value.textToSingleLine,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style:
+                                                          TextStyle(fontWeight: FontWeight.bold),
+                                                        ),
+                                                        Text(
+                                                          value.createdTimeLabel,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style: TextStyle(
+                                                              fontSize: 10,
+                                                              color: Theme.of(context).disabledColor),
+                                                        ),
+                                                      ],
+                                                    )),
+                                              ),
+                                              IconButton(
+                                                icon: Icon(
+                                                  Icons.close,
+                                                  size: 16,
+                                                  color: Theme.of(context).disabledColor,
+                                                ),
+                                                onPressed: () {
+                                                  controller.remove(value);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.search),
-                              ),
                               SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
                               IconButton(
                                 onPressed: () {},
                                 icon: const Icon(Icons.favorite_outline),
                               ),
                               SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
                               IconButton(
                                 onPressed: () {},
@@ -226,20 +328,79 @@ class MyHomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 60,),
+                SizedBox(
+                  height: 60,
+                ),
                 Container(
-                  height: 700,
+                  height: 400,
                   child: Column(
-                    children: const[
-                       Text(
+                    children: const [
+                      Text(
                         "Curated Picks",
-                        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 35, fontWeight: FontWeight.bold),
                       ),
-                       SizedBox(height: 35,),
+                      SizedBox(
+                        height: 35,
+                      ),
                       CuratedPicks(),
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Reviews",
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 170, left: 170),
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  color: Color(0xfff9f3eb),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 35,
+                      ),
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(60),
+                              ),
+                              child: const Icon(Icons.arrow_back),
+                              height: 45,
+                              width: 45,
+                            ),
+                            const SizedBox(
+                              width: 100,
+                            ),
+                            const Reviews(),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(60),
+                              ),
+                              child: const Icon(Icons.arrow_forward),
+                              height: 45,
+                              width: 45,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Footer(),
               ],
             ),
           ],
